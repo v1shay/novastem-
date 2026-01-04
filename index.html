@@ -2,87 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NovaSTEM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="brand">
-    <img src="novastem-logo.png" class="logo" alt="NovaSTEM Logo" />
-    <h1>NovaSTEM</h1>
-  </div>
-
-  <p class="tagline">
-    Hands-on STEM education that builds curiosity, confidence,
-    and real-world understanding.
-  </p>
-
-  <div class="hero-buttons">
-    <a href="#how" class="btn primary">How It Works</a>
-    <a href="#impact" class="btn primary">Our Impact</a>
-    <a href="#founder" class="btn primary">Founder</a>
-    <a href="#contact" class="btn primary">Contact</a>
-  </div>
-
-  <div class="hero-media">
-    <img src="images/home/hero-1.jpg" />
-    <img src="images/home/hero-2.jpg" />
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="section">
-  <h2>How It Works</h2>
-  <p class="section-text">
-    NovaSTEM delivers interactive, age-appropriate experiments across physics,
-    chemistry, and biology—designed to make abstract concepts tangible.
-  </p>
-
-  <!-- TOP: REAL PHOTOS -->
-  <div class="media-grid">
-    <img src="how/students-1.jpg" />
-    <img src="how/process-1.jpg" />
-    <video src="how/demo-1.mp4" autoplay muted loop></video>
-  </div>
-
-  <!-- BOTTOM: EDUCATIONAL GRAPHICS -->
-  <div class="media-grid">
-    <img src="how/physics-1.jpg" class="graphic" />
-    <img src="how/chemistry-1.jpg" class="graphic" />
-    <img src="how/biology-1.jpg" class="graphic" />
-  </div>
-</section>
-
-<!-- FOUNDER -->
-<section id="founder" class="section founder">
-  <div class="founder-grid">
-    <img src="founder-photo.jpg" class="founder-photo" />
-
-    <div>
-      <h2>About the Founder</h2>
-      <p>
-        NovaSTEM was founded to make science engaging, accessible,
-        and memorable for young students. Through hands-on experiments
-        and thoughtful instruction, the goal is to build confidence
-        and curiosity early—before students decide STEM “isn’t for them.”
-      </p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-brand">
+      <img src="novastem-logo.png" alt="NovaSTEM Logo" class="hero-logo" />
+      <h1>NovaSTEM</h1>
     </div>
-  </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact" class="section contact">
-  <h2>Let’s Connect</h2>
-  <div class="contact-buttons">
-    <a href="mailto:v.agrwl17@email.com" class="btn outline">Email</a>
-    <a href="https://vishay-portfolio.vercel.app" class="btn outline">Website</a>
-    <a href="https://docs.google.com/document/d/1WzZJZBH80DKdhlGDDp_C0U5lvuMLdMok/edit?usp=sharing&ouid=109737331765592480064&rtpof=true&sd=true" class="btn outline">Resume</a>
-  </div>
-</section>
+    <p class="hero-tagline">
+      Hands-on STEM education that builds curiosity, confidence, and real-world understanding.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#how" class="btn">How It Works</a>
+      <a href="#impact" class="btn">Our Impact</a>
+      <a href="#founder" class="btn">Founder</a>
+      <a href="#contact" class="btn">Contact</a>
+    </div>
+
+    <div class="hero-images">
+      <img src="images/home/hero-1.jpg" alt="NovaSTEM demo" />
+      <img src="images/home/hero-2.jpg" alt="Students engaged" />
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section">
+    <h2>How It Works</h2>
+    <p class="section-text">
+      NovaSTEM delivers interactive, age-appropriate experiments across physics,
+      chemistry, and biology—designed to make abstract concepts tangible through hands-on exploration.
+    </p>
+
+    <!-- PEOPLE PHOTOS -->
+    <div class="image-grid people-grid">
+      <img src="how/students-1.jpg" alt="Students learning">
+      <img src="how/process-1.jpg" alt="Experiment process">
+      <img src="how/physics-1.jpg" alt="Physics demo">
+    </div>
+
+    <!-- INFOGRAPHICS -->
+    <div class="image-grid infographic-grid">
+      <img src="how/physics-1.jpg" alt="Physics activities">
+      <img src="how/chemistry-1.jpg" alt="Chemistry activities">
+      <img src="how/biology-1.jpg" alt="Biology activities">
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section id="founder" class="section founder">
+    <div class="founder-content">
+      <img src="founder-photo.jpg" alt="Founder photo">
+      <div>
+        <h2>About the Founder</h2>
+        <p>
+          NovaSTEM was founded to make high-quality STEM education accessible,
+          engaging, and inspiring for young students. Through hands-on learning,
+          curiosity becomes confidence—and learning becomes something students look forward to.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <h2>Let’s Connect</h2>
+    <div class="contact-buttons">
+      <a href="mailto:v.agrwl17@email.com" class="btn outline">Email</a>
+      <a href="https://vishay-portfolio.vercel.app" target="_blank" class="btn outline">Website</a>
+      <a href="https://docs.google.com/document/d/1WzZJZBH80DKdhlGDDp_C0U5lvuMLdMok/edit?usp=sharing&ouid=109737331765592480064&rtpof=true&sd=true" target="_blank" class="btn outline">Resume</a>
+    </div>
+  </section>
 
 </body>
 </html>
