@@ -13,7 +13,6 @@
   --bg-pastel: #eaf6ef;
 
   --grid-line: rgba(21, 128, 61, 0.08);
-  --diagram-line: rgba(21, 128, 61, 0.14);
   --notebook-line: rgba(15, 95, 46, 0.08);
 
   --text: #0f172a;
@@ -21,7 +20,7 @@
 }
 
 /* ===============================
-   GLOBAL RESET
+   RESET
 ================================ */
 
 * {
@@ -48,68 +47,52 @@ body {
 }
 
 .section {
-  position: relative;
   padding: 88px 0;
-  overflow: hidden;
+  position: relative;
 }
 
-/* alternating section backgrounds */
+/* alternating section colors */
 .section:nth-of-type(2) {
-  background: var(--bg-white);
+  background-color: var(--bg-white);
 }
 
 .section:nth-of-type(3) {
-  background: var(--bg-pastel);
+  background-color: var(--bg-pastel);
 }
 
 /* ===============================
-   SCIENCE GRID BACKGROUND
+   SCIENCE GRID (VISIBLE)
 ================================ */
 
-.section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+.section {
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
-  opacity: 0.45;
-  animation: gridFloat 90s linear infinite;
-  pointer-events: none;
-  z-index: 0;
+  animation: gridScroll 120s linear infinite;
 }
 
-@keyframes gridFloat {
+@keyframes gridScroll {
   to {
     background-position: 480px 480px;
   }
 }
 
-.section > * {
-  position: relative;
-  z-index: 1;
-}
-
 /* ===============================
-   NOTEBOOK PAPER TEXTURE
+   NOTEBOOK PAPER (SECTIONS)
 ================================ */
 
-.section:nth-of-type(2)::after,
-.section:nth-of-type(4)::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
+.section:nth-of-type(2),
+.section:nth-of-type(4) {
+  background-image:
     repeating-linear-gradient(
       to bottom,
       transparent,
-      transparent 32px,
-      var(--notebook-line) 34px
-    );
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
+      transparent 30px,
+      var(--notebook-line) 32px
+    ),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
 }
 
 /* ===============================
@@ -117,7 +100,11 @@ body {
 ================================ */
 
 .hero {
-  background: var(--bg-hero);
+  background-color: var(--bg-hero);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(21,128,61,.15) 2px, transparent 2px),
+    radial-gradient(circle at 85% 30%, rgba(21,128,61,.12) 2px, transparent 2px);
+  background-size: 160px 160px;
 }
 
 .hero-inner {
@@ -159,21 +146,6 @@ body {
   justify-content: center;
   gap: 18px;
   margin-bottom: 56px;
-}
-
-/* plant detailing */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(21,128,61,.12) 2px, transparent 2px),
-    radial-gradient(circle at 85% 30%, rgba(21,128,61,.12) 2px, transparent 2px),
-    linear-gradient(45deg, transparent 48%, rgba(21,128,61,.12) 50%, transparent 52%);
-  background-size: 140px 140px, 200px 200px, 260px 260px;
-  opacity: 0.35;
-  animation: diagramDrift 120s linear infinite;
-  pointer-events: none;
 }
 
 /* ===============================
@@ -324,19 +296,36 @@ body {
 }
 
 /* ===============================
-   MOBILE FIXES
+   MOBILE FIXES (REAL)
 ================================ */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+
   .hero-brand {
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-logo {
+    height: 120px;
   }
 
   .hero h1 {
-    font-size: 3.4rem;
+    font-size: 3.2rem;
   }
 
-  .hero-images,
+  .hero-tagline {
+    font-size: 1.3rem;
+  }
+
+  .hero-images {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-images img {
+    height: 220px;
+  }
+
   .impact-simple,
   .steps,
   .teach-grid,
@@ -345,19 +334,19 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .hero-images img {
-    height: 220px;
-  }
-
-  .impact-card {
-    padding: 36px;
+  .impact-card,
+  .step,
+  .teach-card {
+    padding: 32px;
   }
 }
 
-/* reduce motion */
+/* ===============================
+   ACCESSIBILITY
+================================ */
+
 @media (prefers-reduced-motion: reduce) {
-  .section::before,
-  .hero::after {
+  .section {
     animation: none;
   }
 }
