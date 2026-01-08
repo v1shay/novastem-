@@ -1,14 +1,27 @@
+/* =========================
+   NOVASTEM — FINAL STYLES
+   ========================= */
+
 :root {
-  --green: #16a34a;
-  --green-strong: #e6f4ea;   /* STRONGER green */
-  --green-soft: #edf7f1;
-  --bg-main: #f2fbf5;        /* NOTICEABLE background */
+  /* Core Greens */
+  --green: #15803d;                 /* science green */
+  --green-dark: #166534;            /* accent green */
+  --green-soft: rgba(21, 128, 61, 0.18);
+
+  /* Backgrounds */
+  --bg-main: #eef7f0;               /* visible green tint */
+  --bg-alt: #f4fbf6;
   --bg-white: #ffffff;
+
+  /* Text */
   --text: #0f172a;
   --muted: #475569;
+
+  /* Grid pattern */
+  --grid-line: rgba(21, 128, 61, 0.08);
 }
 
-/* -------- BASE -------- */
+/* ---------------- BASE ---------------- */
 
 * {
   box-sizing: border-box;
@@ -23,7 +36,16 @@ body {
   font-size: 17.5px;
 }
 
-/* -------- LAYOUT -------- */
+/* ---------------- GRID BACKGROUND UTILITY ---------------- */
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ---------------- LAYOUT ---------------- */
 
 .container {
   max-width: 1200px;
@@ -35,7 +57,7 @@ body {
   padding: 100px 0;
 }
 
-/* alternating backgrounds (VERY visible now) */
+/* alternating section rhythm */
 .section:nth-of-type(odd) {
   background: var(--bg-main);
 }
@@ -44,7 +66,7 @@ body {
   background: var(--bg-white);
 }
 
-/* -------- HEADINGS -------- */
+/* ---------------- HEADINGS ---------------- */
 
 .section h2 {
   font-family: "Space Grotesk", sans-serif;
@@ -59,7 +81,7 @@ body {
   margin-bottom: 52px;
 }
 
-/* -------- BUTTONS -------- */
+/* ---------------- BUTTONS ---------------- */
 
 .btn {
   background: var(--green);
@@ -68,16 +90,22 @@ body {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
+  border: 2px solid var(--green);
 }
 
 .btn:hover {
-  opacity: 0.9;
+  background: var(--green-dark);
+  border-color: var(--green-dark);
 }
 
-/* -------- HERO -------- */
+/* ---------------- HERO ---------------- */
 
 .hero {
-  background: var(--green-strong);
+  background:
+    linear-gradient(to bottom, var(--bg-main), var(--bg-alt)),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: auto, 28px 28px, 28px 28px;
 }
 
 .hero-inner {
@@ -93,7 +121,7 @@ body {
 }
 
 .hero-logo {
-  height: 160px; /* MUCH BIGGER */
+  height: 160px;
 }
 
 .hero h1 {
@@ -121,7 +149,8 @@ body {
   margin-bottom: 60px;
 }
 
-/* hero images */
+/* HERO IMAGES */
+
 .hero-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -137,11 +166,11 @@ body {
   border-radius: 24px;
 }
 
-/* -------- IMPACT -------- */
+/* ---------------- IMPACT ---------------- */
 
 .impact-simple {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* EXTRA CARD */
+  grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   max-width: 1100px;
   margin: 64px auto 0;
@@ -152,12 +181,15 @@ body {
   padding: 52px 44px;
   border-radius: 30px;
   text-align: center;
+  border: 1px solid rgba(21, 128, 61, 0.12);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
 }
 
 .impact-card h3 {
   font-family: "Space Grotesk", sans-serif;
   font-size: 2.3rem;
   margin-bottom: 16px;
+  color: var(--green-dark);
 }
 
 .impact-card p {
@@ -165,7 +197,7 @@ body {
   color: var(--muted);
 }
 
-/* -------- HOW IT WORKS -------- */
+/* ---------------- HOW IT WORKS ---------------- */
 
 .steps {
   display: grid;
@@ -177,9 +209,10 @@ body {
   background: var(--bg-white);
   padding: 40px;
   border-radius: 28px;
+  border-left: 6px solid var(--green);
 }
 
-/* -------- WHAT WE TEACH (FIXED SIZE) -------- */
+/* ---------------- WHAT WE TEACH ---------------- */
 
 .teach-grid {
   display: grid;
@@ -191,13 +224,14 @@ body {
   background: var(--bg-white);
   border-radius: 28px;
   overflow: hidden;
+  border: 1px solid rgba(21, 128, 61, 0.12);
 }
 
 .teach-card img {
   width: 100%;
-  height: 340px;           /* BIGGER */
+  height: 340px;
   object-fit: contain;
-  background: var(--green-soft);
+  background: var(--bg-alt);
 }
 
 .teach-card-content {
@@ -207,9 +241,10 @@ body {
 .teach-card h4 {
   font-size: 1.45rem;
   margin-bottom: 10px;
+  color: var(--green-dark);
 }
 
-/* -------- CLASSROOM -------- */
+/* ---------------- CLASSROOM ---------------- */
 
 .classroom-grid {
   display: grid;
@@ -231,7 +266,7 @@ body {
   color: var(--muted);
 }
 
-/* -------- FOUNDER -------- */
+/* ---------------- FOUNDER ---------------- */
 
 .founder-content {
   display: grid;
@@ -242,18 +277,18 @@ body {
 
 .founder img {
   width: 100%;
-  max-width: 260px; /* SMALLER */
+  max-width: 260px;
   border-radius: 22px;
 }
 
-/* -------- CONTACT -------- */
+/* ---------------- CONTACT ---------------- */
 
 .contact-buttons {
   display: flex;
   gap: 20px;
 }
 
-/* -------- MOBILE (ACTUALLY FIXED) -------- */
+/* ---------------- MOBILE ---------------- */
 
 @media (max-width: 900px) {
   body {
@@ -283,5 +318,11 @@ body {
 
   .teach-card img {
     height: 280px;
+  }
+
+  .hero-buttons,
+  .contact-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
