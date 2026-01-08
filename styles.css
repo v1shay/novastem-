@@ -1,14 +1,14 @@
 :root {
   --green: #16a34a;
-  --green-soft: rgba(22, 163, 74, 0.14);
-  --bg-soft: #f6fbf7;
+  --green-strong: #e6f4ea;   /* STRONGER green */
+  --green-soft: #edf7f1;
+  --bg-main: #f2fbf5;        /* NOTICEABLE background */
   --bg-white: #ffffff;
-  --bg-alt: #eef7f1;
-  --text: #111;
-  --muted: #555;
+  --text: #0f172a;
+  --muted: #475569;
 }
 
-/* ---------------- BASE ---------------- */
+/* -------- BASE -------- */
 
 * {
   box-sizing: border-box;
@@ -16,14 +16,14 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
   color: var(--text);
-  background: var(--bg-soft);
+  background: var(--bg-main);
   line-height: 1.65;
-  font-size: 17px;
+  font-size: 17.5px;
 }
 
-/* ---------------- LAYOUT ---------------- */
+/* -------- LAYOUT -------- */
 
 .container {
   max-width: 1200px;
@@ -32,35 +32,39 @@ body {
 }
 
 .section {
-  padding: 96px 0;
+  padding: 100px 0;
 }
 
-/* background rhythm */
-.section:nth-of-type(2) { background: var(--bg-soft); }
-.section:nth-of-type(3) { background: var(--bg-white); }
-.section:nth-of-type(4) { background: var(--bg-alt); }
+/* alternating backgrounds (VERY visible now) */
+.section:nth-of-type(odd) {
+  background: var(--bg-main);
+}
 
-/* ---------------- HEADINGS ---------------- */
+.section:nth-of-type(even) {
+  background: var(--bg-white);
+}
+
+/* -------- HEADINGS -------- */
 
 .section h2 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 3rem;
-  margin-bottom: 24px;
+  font-size: 3.2rem;
+  margin-bottom: 28px;
 }
 
 .section-text {
   max-width: 760px;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: var(--muted);
-  margin-bottom: 48px;
+  margin-bottom: 52px;
 }
 
-/* ---------------- BUTTONS ---------------- */
+/* -------- BUTTONS -------- */
 
 .btn {
   background: var(--green);
   color: white;
-  padding: 14px 30px;
+  padding: 16px 34px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
@@ -70,11 +74,10 @@ body {
   opacity: 0.9;
 }
 
-/* ---------------- HERO ---------------- */
+/* -------- HERO -------- */
 
 .hero {
-  padding: 96px 0 80px;
-  background: var(--bg-soft);
+  background: var(--green-strong);
 }
 
 .hero-inner {
@@ -85,190 +88,184 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 22px;
-  margin-bottom: 20px;
+  gap: 28px;
+  margin-bottom: 24px;
 }
 
 .hero-logo {
-  height: 130px; /* BIGGER, more presence */
+  height: 160px; /* MUCH BIGGER */
 }
 
 .hero h1 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 5.2rem;
+  font-size: 5.6rem;
   margin: 0;
 }
 
 .hero-tagline {
-  font-size: 1.6rem;
-  max-width: 880px;
-  margin: 18px auto;
+  font-size: 1.75rem;
+  max-width: 900px;
+  margin: 22px auto;
 }
 
 .hero-credibility {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--muted);
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 18px;
-  margin-bottom: 56px;
+  gap: 20px;
+  margin-bottom: 60px;
 }
 
-/* HERO IMAGES */
-
+/* hero images */
 .hero-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 26px;
-  max-width: 960px;
+  gap: 28px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .hero-images img {
   width: 100%;
-  height: 260px;
+  height: 280px;
   object-fit: cover;
-  border-radius: 22px;
+  border-radius: 24px;
 }
 
-/* ---------------- IMPACT ---------------- */
+/* -------- IMPACT -------- */
 
 .impact-simple {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+  grid-template-columns: repeat(3, 1fr); /* EXTRA CARD */
+  gap: 40px;
   max-width: 1100px;
-  margin: 56px auto 0;
+  margin: 64px auto 0;
 }
 
 .impact-card {
   background: var(--bg-white);
-  padding: 48px 40px;
-  border-radius: 28px;
+  padding: 52px 44px;
+  border-radius: 30px;
   text-align: center;
 }
 
 .impact-card h3 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 2.1rem;
-  margin-bottom: 14px;
+  font-size: 2.3rem;
+  margin-bottom: 16px;
 }
 
 .impact-card p {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--muted);
 }
 
-/* ---------------- HOW IT WORKS ---------------- */
+/* -------- HOW IT WORKS -------- */
 
 .steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 36px;
+  gap: 40px;
 }
 
 .step {
   background: var(--bg-white);
-  padding: 36px;
-  border-radius: 24px;
+  padding: 40px;
+  border-radius: 28px;
 }
 
-.step h3 {
-  margin-bottom: 10px;
-}
-
-/* ---------------- WHAT WE TEACH ---------------- */
+/* -------- WHAT WE TEACH (FIXED SIZE) -------- */
 
 .teach-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 36px;
 }
 
 .teach-card {
   background: var(--bg-white);
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
 }
 
 .teach-card img {
   width: 100%;
-  height: 300px;              /* BIGGER, readable */
+  height: 340px;           /* BIGGER */
   object-fit: contain;
-  background: var(--bg-soft);
+  background: var(--green-soft);
 }
 
 .teach-card-content {
-  padding: 22px 24px 26px;
+  padding: 28px 28px 32px;
 }
 
 .teach-card h4 {
-  font-size: 1.35rem;
-  margin-bottom: 8px;
+  font-size: 1.45rem;
+  margin-bottom: 10px;
 }
 
-/* ---------------- CLASSROOM ---------------- */
+/* -------- CLASSROOM -------- */
 
 .classroom-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 32px;
 }
 
 .classroom-grid img,
 .classroom-grid video {
   width: 100%;
-  height: 240px;
+  height: 260px;
   object-fit: cover;
-  border-radius: 22px;
+  border-radius: 24px;
 }
 
 .caption {
   margin-top: 10px;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--muted);
 }
 
-/* ---------------- FOUNDER ---------------- */
+/* -------- FOUNDER -------- */
 
 .founder-content {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr; /* image slightly smaller */
-  gap: 48px;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 56px;
   align-items: center;
 }
 
 .founder img {
   width: 100%;
-  max-width: 300px; /* smaller + professional */
+  max-width: 260px; /* SMALLER */
   border-radius: 22px;
 }
 
-/* ---------------- CONTACT ---------------- */
+/* -------- CONTACT -------- */
 
 .contact-buttons {
   display: flex;
-  gap: 18px;
+  gap: 20px;
 }
 
-/* ---------------- MOBILE FIXES ---------------- */
+/* -------- MOBILE (ACTUALLY FIXED) -------- */
 
 @media (max-width: 900px) {
-
   body {
-    font-size: 16px;
+    font-size: 16.5px;
   }
 
   .hero h1 {
-    font-size: 3.4rem;
+    font-size: 3.6rem;
   }
 
   .hero-logo {
-    height: 110px;
+    height: 120px;
   }
 
   .hero-images,
@@ -281,16 +278,10 @@ body {
   }
 
   .impact-card {
-    padding: 36px 30px;
+    padding: 40px 32px;
   }
 
   .teach-card img {
-    height: 260px;
-  }
-
-  .hero-buttons,
-  .contact-buttons {
-    flex-wrap: wrap;
-    justify-content: center;
+    height: 280px;
   }
 }
