@@ -201,6 +201,9 @@ p { color: var(--muted); }
   background: white;
   padding: 32px;
   border-radius: 20px;
+
+  /* ✅ FIX: make boxes visible */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 /* ===============================
@@ -250,18 +253,19 @@ p { color: var(--muted); }
 ================================ */
 .founder-content {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 180px 1fr;
   gap: 32px;
   align-items: center;
 }
 
 .founder img {
-  max-width: 0px;
+  width: 180px;
+  height: auto;
   border-radius: 20px;
 }
 
 .founder-content p {
-  max-width: 100px;
+  max-width: 600px;
 }
 
 /* ===============================
@@ -296,11 +300,17 @@ p { color: var(--muted); }
     grid-template-columns: 1fr;
   }
 
-  .teach-card img { height: 1000px; }
+  .teach-card img { height: 500px; }
 
+  /* ✅ FIXED founder mobile sizing */
   .founder img {
-    max-width: 100px;
+    width: 120px;
     margin: 0 auto;
+  }
+
+  .founder-content p {
+    max-width: 100%;
+    text-align: center;
   }
 
   .hero-buttons .btn {
