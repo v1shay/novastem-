@@ -318,12 +318,12 @@ p { color: var(--muted); }
   .teach-card img { height: 700px; }
 
   .founder img {
-    max-width: 140px;
-    margin: 0 auto 20px;
+    max-width: 40px;
+    margin: 0 auto 10px;
   }
 
   .founder-content {
-    text-align: center;
+    text-align: ;left;
     padding: 32px;
   }
 
