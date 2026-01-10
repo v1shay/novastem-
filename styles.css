@@ -92,33 +92,38 @@ p { color: var(--muted); }
 .hero {
   background: var(--white);
   overflow: hidden;
+  position: relative; /* REQUIRED for leaf positioning */
 }
 
+/* BIG decorative leaves */
 .hero::before,
 .hero::after {
   content: "";
   position: absolute;
-  top: 32px;
-  width: 220px;
-  height: 220px;
+  top: -40px;
+  width: 360px;
+  height: 360px;
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 0;
+  opacity: 0.95;
+  z-index: 0; /* stay behind text */
+  pointer-events: none;
 }
 
 .hero::before {
-  left: -40px;
+  left: -120px;
   background-image: url("images/leaf-left.png");
 }
+
 .hero::after {
-  right: -40px;
+  right: -120px;
   background-image: url("images/leaf-right.png");
 }
 
 .hero-inner {
   text-align: center;
   position: relative;
-  z-index: 1;
+  z-index: 1; /* text above leaves */
 }
 
 .hero-brand {
@@ -201,13 +206,11 @@ p { color: var(--muted); }
   background: white;
   padding: 32px;
   border-radius: 20px;
-
-  /* ✅ FIX: make boxes visible */
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 /* ===============================
-   WHAT WE TEACH (TALLER)
+   WHAT WE TEACH
 ================================ */
 .teach-grid {
   display: grid;
@@ -249,19 +252,25 @@ p { color: var(--muted); }
 }
 
 /* ===============================
-   FOUNDER (FIXED)
+   FOUNDER (FINAL FIX)
 ================================ */
 .founder-content {
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 32px;
   align-items: center;
+
+  /* 🔑 THIS FIXES TEXT-ON-IMAGE */
+  background: white;
+  padding: 48px;
+  border-radius: 24px;
 }
 
 .founder img {
   width: 180px;
   height: auto;
   border-radius: 20px;
+  object-fit: cover;
 }
 
 .founder-content p {
@@ -286,9 +295,9 @@ p { color: var(--muted); }
 
   .hero::before,
   .hero::after {
-    width: 150px;
-    height: 150px;
-    top: 18px;
+    width: 220px;
+    height: 220px;
+    top: -20px;
   }
 
   .hero-images,
@@ -300,17 +309,20 @@ p { color: var(--muted); }
     grid-template-columns: 1fr;
   }
 
-  .teach-card img { height: 500px; }
+  .teach-card img { height: 700px; }
 
-  /* ✅ FIXED founder mobile sizing */
   .founder img {
     width: 120px;
     margin: 0 auto;
   }
 
+  .founder-content {
+    text-align: center;
+    padding: 32px;
+  }
+
   .founder-content p {
     max-width: 100%;
-    text-align: center;
   }
 
   .hero-buttons .btn {
