@@ -256,12 +256,12 @@ p { color: var(--muted); }
 }
 
 .founder img {
-  max-width: 240px;
+  max-width: 100px;
   border-radius: 20px;
 }
 
 .founder-content p {
-  max-width: 520px;
+  max-width: 100px;
 }
 
 /* ===============================
@@ -296,7 +296,7 @@ p { color: var(--muted); }
     grid-template-columns: 1fr;
   }
 
-  .teach-card img { height: 300px; }
+  .teach-card img { height: 500px; }
 
   .founder img {
     max-width: 100px;
