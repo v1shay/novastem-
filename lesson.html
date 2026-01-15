@@ -8,11 +8,17 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Main Styles -->
+  <!-- Global Styles -->
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Lesson-specific layout */
+    body {
+      background: #e6f4ec;
+    }
+
+    /* ===============================
+       LAYOUT
+    ================================ */
     .lesson-container {
       max-width: 900px;
       margin: 0 auto;
@@ -22,9 +28,48 @@
       background: white;
       padding: 36px;
       border-radius: 22px;
-      margin-top: 36px;
+      margin-top: 32px;
     }
 
+    .lesson-meta {
+      margin-top: 12px;
+      color: #475569;
+      font-size: 1.05rem;
+    }
+
+    /* ===============================
+       TABS
+    ================================ */
+    .lesson-tabs {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .lesson-tabs button {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 2px solid #15803d;
+      background: white;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .lesson-tabs button.active {
+      background: #15803d;
+      color: white;
+    }
+
+    .lesson-section {
+      margin-top: 24px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* ===============================
+       PRACTICE INPUT
+    ================================ */
     textarea {
       width: 100%;
       min-height: 140px;
@@ -52,178 +97,105 @@
 <section class="hero section">
   <div class="container hero-inner">
     <h1 id="lesson-title">Lesson</h1>
-    <p class="hero-tagline" id="lesson-subtitle"></p>
 
-    <div class="hero-buttons">
-      <a href="edu-coding.html" class="btn">← Back to Coding</a>
+    <p class="lesson-meta">
+      <strong>Goal:</strong>
+      <span id="lesson-goal"></span>
+    </p>
+
+    <p class="lesson-meta" id="lesson-why"></p>
+
+    <div class="hero-buttons" style="margin-top:16px;">
       <a href="edu.html" class="btn">← Back to EDU</a>
     </div>
   </div>
 </section>
 
-<!-- LESSON CONTENT -->
+<!-- CONTENT -->
 <section class="section">
   <div class="container lesson-container">
 
     <div class="lesson-box">
-      <h2>Challenge</h2>
-      <p id="lesson-prompt"></p>
 
-      <textarea id="student-input" placeholder="Explain your thinking step by step..."></textarea>
-
-      <div class="hero-buttons" style="margin-top: 24px;">
-        <button class="btn" onclick="getHint()">Get a Hint</button>
-        <button class="btn" onclick="checkReasoning()">Check Reasoning</button>
+      <!-- TABS -->
+      <div class="lesson-tabs">
+        <button class="tab-btn active" data-tab="learn">Learn</button>
+        <button class="tab-btn" data-tab="practice">Practice</button>
+        <button class="tab-btn" data-tab="quiz">Quiz</button>
       </div>
 
-      <div id="feedback" class="feedback-box" style="display:none;"></div>
-    </div>
+      <!-- LEARN -->
+      <div id="learn" class="lesson-section">
+        <p><em>Learning content will be generated here.</em></p>
+      </div>
 
+      <!-- PRACTICE -->
+      <div id="practice" class="lesson-section" hidden>
+        <p><em>Practice activities will appear here.</em></p>
+        <textarea placeholder="Explain your reasoning step by step..."></textarea>
+        <div class="feedback-box" style="display:none;"></div>
+      </div>
+
+      <!-- QUIZ -->
+      <div id="quiz" class="lesson-section" hidden>
+        <p><em>Quiz unlocks after mastering practice. AI is disabled here.</em></p>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<script>
-/* ===============================
-   LESSON DATA (MVP)
-================================ */
+<!-- ===============================
+     CONTRACT WIRING
+================================ -->
+<script type="module">
+  import { LESSON_CONTRACTS } from "./data/lesson-contracts.js";
 
-const lessons = {
-  "algorithms-1": {
-    title: "What Is an Algorithm?",
-    subtitle: "Designing step-by-step solutions",
-    prompt:
-      "Imagine you are teaching a robot how to make a peanut butter sandwich. " +
-      "Write clear, step-by-step instructions so the robot does not get confused.",
-    hints: [
-      "Start from the very beginning. What happens first?",
-      "Think about the order of actions. What must happen before something else?",
-      "Are there any decisions the robot needs to make?",
-      "Try numbering your steps clearly."
-    ],
-    feedback:
-      "Good algorithms are clear, ordered, and detailed. " +
-      "If a step could be misunderstood, it probably needs more detail."
-  },
+  const params = new URLSearchParams(window.location.search);
+  const subject = params.get("subject");
+  const pillar = params.get("pillar");
+  const lessonId = params.get("lesson");
 
-  "logic-1": {
-    title: "If / Then Logic",
-    subtitle: "Making decisions in algorithms",
-    prompt:
-      "You are designing an algorithm for getting dressed. " +
-      "Explain what happens if it is raining versus if it is sunny.",
-    hints: [
-      "What decision must be checked first?",
-      "What happens if the condition is true?",
-      "What happens if the condition is false?"
-    ],
-    feedback:
-      "Conditional logic helps algorithms make decisions. " +
-      "Clear if/then reasoning prevents mistakes."
-  }
-  "science-observation-1": {
-  title: "Observation",
-  subtitle: "Noticing patterns and details",
-  prompt:
-    "Look around your room or outside a window. " +
-    "Describe three things you observe without explaining why they happen.",
-  hints: [
-    "Focus on what you see, not why it happens.",
-    "Avoid using words like 'because'.",
-    "Be specific and detailed."
-  ],
-  feedback:
-    "Good observations describe details without assumptions. " +
-    "Scientists observe carefully before forming explanations."
-},
-
-"science-cause-effect-1": {
-  title: "Cause & Effect",
-  subtitle: "Understanding how changes affect outcomes",
-  prompt:
-    "Imagine a plant placed in sunlight versus shade. " +
-    "Explain what might change and why.",
-  hints: [
-    "What is changing?",
-    "What stays the same?",
-    "How might the change affect the result?"
-  ],
-  feedback:
-    "Cause and effect reasoning helps scientists test ideas " +
-    "by focusing on how one change influences another."
-},
-
-"science-systems-1": {
-  title: "Systems & Evidence",
-  subtitle: "Understanding connected parts",
-  prompt:
-    "Describe a system you use every day (like a school or ecosystem). " +
-    "Explain how different parts work together.",
-  hints: [
-    "What are the main parts?",
-    "How do the parts interact?",
-    "What happens if one part changes?"
-  ],
-  feedback:
-    "Systems thinking helps scientists understand complex interactions " +
-    "and use evidence to explain outcomes."
-}
-
-};
-
-/* ===============================
-   LOAD LESSON
-================================ */
-
-const params = new URLSearchParams(window.location.search);
-const lessonId = params.get("id");
-
-const lesson = lessons[lessonId];
-
-document.getElementById("lesson-title").innerText = lesson.title;
-document.getElementById("lesson-subtitle").innerText = lesson.subtitle;
-document.getElementById("lesson-prompt").innerText = lesson.prompt;
-
-/* ===============================
-   HINT SYSTEM
-================================ */
-
-let hintIndex = 0;
-
-function getHint() {
-  const feedbackBox = document.getElementById("feedback");
-  feedbackBox.style.display = "block";
-
-  if (hintIndex < lesson.hints.length) {
-    feedbackBox.innerText = "Hint: " + lesson.hints[hintIndex];
-    hintIndex++;
-  } else {
-    feedbackBox.innerText =
-      "Try reviewing your steps carefully and checking the order of actions.";
-  }
-}
-
-/* ===============================
-   REASONING CHECK
-================================ */
-
-function checkReasoning() {
-  const input = document.getElementById("student-input").value.trim();
-  const feedbackBox = document.getElementById("feedback");
-  feedbackBox.style.display = "block";
-
-  if (input.length < 40) {
-    feedbackBox.innerText =
-      "Try explaining your reasoning in more detail. " +
-      "Clear thinking requires clear explanations.";
-    return;
+  if (!subject || !pillar || !lessonId) {
+    throw new Error("Missing subject, pillar, or lesson in URL");
   }
 
-  feedbackBox.innerText = lesson.feedback;
-}
+  const lesson =
+    LESSON_CONTRACTS?.[subject]?.[pillar]?.[lessonId];
+
+  if (!lesson) {
+    throw new Error("Lesson contract not found");
+  }
+
+  // Render metadata
+  document.getElementById("lesson-title").textContent = lesson.title;
+  document.getElementById("lesson-goal").textContent =
+    lesson.learningGoal.coreConcept;
+  document.getElementById("lesson-why").textContent =
+    lesson.learningGoal.whyItMatters;
 </script>
 
-<script type="module" src="data/lesson-contracts.js"></script>
-<script type="module" src="lesson-engine.js"></script>
+<!-- ===============================
+     TAB SWITCHING
+================================ -->
+<script>
+  const buttons = document.querySelectorAll(".tab-btn");
+  const sections = {
+    learn: document.getElementById("learn"),
+    practice: document.getElementById("practice"),
+    quiz: document.getElementById("quiz")
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      Object.values(sections).forEach(sec => sec.hidden = true);
+      sections[btn.dataset.tab].hidden = false;
+    });
+  });
+</script>
 
 </body>
 </html>
