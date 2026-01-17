@@ -417,5 +417,20 @@ body {
     text-align: center !important;
     padding: 18px 0 !important;
   }
+   html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  height: 100vh;
+}
 
 }
